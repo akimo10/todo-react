@@ -38,3 +38,17 @@ Created with CodeSandbox
 ```
 
 ループ時に作成したタグに key を付与する。
+
+### レンダリング時に関数が即実行されてしまう。
+
+```
+<button onClick={onClickDelete(index)}>削除</button>
+```
+
+引数が必要な関数にて(引数)付与してしまうと、
+上記記述だと、レンダリング時に毎回実行されてしまう。
+その為、アロー関数を挟みこむことで即処理を防止できる。
+
+```
+<button onClick={() => onClickDelete(index)}>削除</button>
+```
