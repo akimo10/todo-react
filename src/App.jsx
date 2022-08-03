@@ -47,6 +47,20 @@ export const App = () => {
     setIncompleteTodos(newIncompleteTodos);
   };
 
+  // TODOを戻す
+  const onClickBack = (index) => {
+    //新完了リストデータ生成
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+
+    //新未完了リストデータの生成
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+
+    //各データをセット
+    setCompleteTodos(newCompleteTodos);
+    setIncompleteTodos(newIncompleteTodos);
+  };
+
   // return <div></div>;
   return (
     <>
@@ -75,11 +89,11 @@ export const App = () => {
       <div className="complete-area">
         <p className="title">完了のTODO</p>
         <ul>
-          {completeTodos.map((todo) => {
+          {completeTodos.map((todo, index) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>戻す</button>
+                <button onClick={() => onClickBack(index)}>戻す</button>
               </div>
             );
           })}
